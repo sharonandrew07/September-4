@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>September 4</title>
+
+<style>
+
+/* =========================
+   BASIC RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #07070b;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(255, 180, 200, 0.08);
+    filter: blur(80px);
+    animation: glowMove 12s infinite alternate ease-in-out;
+}
+
+.glow.one {
+    top: 10%;
+    left: -100px;
+}
+
+.glow.two {
+    bottom: 0;
+    right: -100px;
+    animation-delay: 3s;
+}
+
+@keyframes glowMove {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(100px, -60px) scale(1.3);
+    }
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.15;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.4);
+    }
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#intro {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+.intro-content {
+    max-width: 700px;
+}
+
+.small-title {
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: 0.55;
+
+    margin-bottom: 28px;
+
+    animation: fadeUp 1.5s ease forwards;
+}
+
+.main-title {
+    font-size: clamp(55px, 13vw, 110px);
+    font-weight: normal;
+    letter-spacing: 8px;
+
+    margin-bottom: 25px;
+
+    animation: fadeUp 1.8s ease forwards;
+}
+
+.subtitle {
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.65;
+
+    margin-bottom: 45px;
+
+    animation: fadeUp 2.1s ease forwards;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.open-button {
+    background: transparent;
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.45);
+
+    padding: 15px 32px;
+
+    border-radius: 50px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation: fadeUp 2.4s ease forwards;
+}
+
+.open-button:hover {
+    background: white;
+    color: #07070b;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 40px rgba(255,255,255,0.15);
+}
+
+.open-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+#main {
+    display: none;
+
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    padding: 90px 25px 100px;
+
+    text-align: center;
+
+    opacity: 0;
+}
+
+.main-content {
+    max-width: 750px;
+    margin: auto;
+}
+
+
+/* =========================
+   BIRTHDAY TITLE
+========================= */
+
+.birthday-small {
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    opacity: 0.5;
+
+    margin-bottom: 25px;
+}
+
+.birthday-title {
+    font-size: clamp(42px, 10vw, 80px);
+    font-weight: normal;
+
+    margin-bottom: 25px;
+
+    letter-spacing: 2px;
+}
+
+.birthday-line {
+    width: 70px;
+    height: 1px;
+
+    background: rgba(255,255,255,0.5);
+
+    margin: 30px auto;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    max-width: 600px;
+
+    margin: 0 auto 60px;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: rgba(255,255,255,0.78);
+}
+
+.message strong {
+    color: white;
+    font-weight: normal;
+}
+
+
+/* =========================
+   MUSIC CARD
+========================= */
+
+.music-card {
+
+    max-width: 600px;
+
+    margin: 0 auto 80px;
+
+    padding: 35px 25px;
+
+    border:
+
+        1px solid rgba(255,255,255,0.12);
+
+    border-radius: 25px;
+
+    background:
+
+        rgba(255,255,255,0.025);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+
+        0 20px 80px rgba(0,0,0,0.35);
+}
+
+.music-label {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    opacity: 0.45;
+
+    margin-bottom: 15px;
+}
+
+.song-title {
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+audio {
+
+    width: 100%;
+}
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+.final-message {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 40px 25px;
+}
+
+.final-message p {
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: rgba(255,255,255,0.78);
+
+    margin-bottom: 15px;
+}
+
+.final-message .signature {
+
+    margin-top: 40px;
+
+    font-size: 15px;
+
+    opacity: 0.45;
+
+    font-style: italic;
+}
+
+
+/* =========================
+   LITTLE JOKE
+========================= */
+
+.joke {
+
+    margin-top: 45px;
+
+    font-family:
+
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    opacity: 0.35;
+
+    transition: opacity 0.4s ease;
+}
+
+.joke:hover {
+
+    opacity: 0.8;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+
+    animation:
+
+        reveal 1.8s ease forwards;
+}
+
+@keyframes reveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .main-title {
+
+        letter-spacing: 4px;
+    }
+
+    .birthday-title {
+
+        font-size: 48px;
+    }
+
+    .message {
+
+        font-size: 16px;
+    }
+
+    .music-card {
+
+        padding: 28px 18px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="background">
+
+    <div class="glow one"></div>
+
+    <div class="glow two"></div>
+
+</div>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section id="intro">
+
+    <div class="intro-content">
+
+        <div class="small-title">
+            A little something for you
+        </div>
+
+        <h1 class="main-title">
+            September 4
+        </h1>
+
+        <p class="subtitle">
+            Some things are better made than said.
+        </p>
+
+        <button
+            class="open-button"
+            onclick="openGift()"
+        >
+            Open it ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<section id="main">
+
+    <div class="main-content">
+
+
+        <div class="birthday-small">
+            For you
+        </div>
+
+
+        <h2 class="birthday-title">
+            Happy Birthday, Pavi. 🎂
+        </h2>
+
+
+        <div class="birthday-line"></div>
+
+
+        <div class="message">
+
+            <p>
+                I didn't want to just say
+                <strong>"Happy Birthday"</strong>
+                this time.
+            </p>
+
+            <p>
+                So I made you something instead.
+            </p>
+
+            <p>
+                I hope this year brings you
+                more reasons to smile,
+                more things to be proud of,
+                and more moments worth remembering.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             MUSIC
+        ========================= -->
+
+        <div class="music-card">
+
+            <div class="music-label">
+                Something I made
+            </div>
+
+            <div class="song-title">
+                September 4
+            </div>
+
+            <!--
+                OUR SONG WILL GO HERE.
+
+                Later, put your music file
+                in the same GitHub folder
+                and change "song.mp3"
+                to its filename.
+            -->
+
+            <audio
+                id="birthdaySong"
+                controls
+            >
+
+                <source
+                    src="song.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support audio.
+
+            </audio>
+
+        </div>
+
+
+        <!-- =========================
+             FINAL MESSAGE
+        ========================= -->
+
+        <div class="final-message">
+
+            <p>
+                Whatever this year brings you,
+                I hope it is kind to you.
+            </p>
+
+            <p>
+                Keep chasing the things
+                that make you happy.
+            </p>
+
+            <p>
+                Keep becoming the person
+                you're meant to be.
+            </p>
+
+            <p>
+                And most importantly...
+            </p>
+
+            <p>
+                <strong>
+                    Have a beautiful year ahead.
+                </strong>
+            </p>
+
+
+            <div class="signature">
+
+                — from someone who remembered
+
+            </div>
+
+
+            <div class="joke">
+
+                Okay, enough emotional nonsense.
+                Go enjoy your birthday. 😂
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* =========================
+   CREATE STARS
+========================= */
+
+const background =
+    document.querySelector(".background");
+
+
+for (let i = 0; i < 100; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 4 + "s";
+
+    star.style.animationDuration =
+        (2 + Math.random() * 4) + "s";
+
+    background.appendChild(star);
+
+}
+
+
+/* =========================
+   OPEN GIFT
+========================= */
+
+function openGift() {
+
+    const intro =
+        document.getElementById("intro");
+
+    const main =
+        document.getElementById("main");
+
+
+    /* Fade out intro */
+
+    intro.style.opacity = "0";
+
+    intro.style.transform =
+        "scale(1.05)";
+
+
+    /* Wait for transition */
+
+    setTimeout(() => {
+
+        intro.style.display = "none";
+
+        main.style.display = "block";
+
+
+        /* Trigger browser reflow */
+
+        void main.offsetWidth;
+
+
+        main.classList.add("reveal");
+
+
+    }, 1200);
+
+}
+
+
+/* =========================
+   OPTIONAL MUSIC
+========================= */
+
+const song =
+    document.getElementById("birthdaySong");
+
+
+/*
+    We deliberately DON'T autoplay.
+
+    Browsers often block autoplay,
+    especially when sound is involved.
+
+    She can press play herself.
+*/
+
+</script>
+
+
+</body>
+</html>
