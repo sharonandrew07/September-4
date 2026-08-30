@@ -24,14 +24,11 @@ body{min-height:100vh;background:#07070b;color:#fff;font-family:Georgia,"Times N
 .small-title{font-size:13px;letter-spacing:5px;text-transform:uppercase;opacity:.5;margin-bottom:28px;animation:fadeUp 1.4s ease forwards}
 .main-title{font-size:clamp(55px,13vw,110px);font-weight:normal;letter-spacing:8px;margin-bottom:25px;animation:fadeUp 1.7s ease forwards}
 .subtitle{font-size:17px;line-height:1.8;opacity:.65;margin-bottom:45px;animation:fadeUp 2s ease forwards}
-
-.open-button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);padding:15px 34px;border-radius:50px;font-size:15px;cursor:pointer;transition:background .4s ease,color .4s ease,transform .4s ease,box-shadow .4s ease;animation:fadeUp 2.3s ease forwards}
+.open-button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);padding:15px 34px;border-radius:50px;font-size:15px;cursor:pointer;transition:.4s ease;animation:fadeUp 2.3s ease forwards}
 .open-button:hover{background:#fff;color:#07070b;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,255,255,.15)}
-.open-button:active{transform:scale(.96)}
 
 #main{display:none;position:relative;z-index:2;min-height:100vh;padding:90px 20px 120px;opacity:0}
 .main-content{max-width:760px;margin:auto}
-
 .section{margin-bottom:120px;opacity:0;transform:translateY(35px);transition:opacity 1s ease,transform 1s ease}
 .section.visible{opacity:1;transform:translateY(0)}
 .section-label{text-align:center;font-size:11px;letter-spacing:5px;text-transform:uppercase;opacity:.4;margin-bottom:25px}
@@ -48,14 +45,13 @@ body{min-height:100vh;background:#07070b;color:#fff;font-family:Georgia,"Times N
 .chat-row{display:flex;width:100%}
 .chat-row.me{justify-content:flex-end}
 .chat-row.her{justify-content:flex-start}
-.bubble{max-width:75%;padding:13px 17px;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;animation:bubbleIn .8s ease forwards}
+.bubble{max-width:75%;padding:13px 17px;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55}
 .me .bubble{background:rgba(255,255,255,.11);border-bottom-right-radius:5px}
 .her .bubble{background:rgba(255,180,200,.09);border-bottom-left-radius:5px}
 .chat-name{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.35;margin-bottom:5px}
-@keyframes bubbleIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 
 .memory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:45px}
-.memory{padding:25px 20px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:rgba(255,255,255,.025);backdrop-filter:blur(10px);transition:transform .4s ease,background .4s ease}
+.memory{padding:25px 20px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:rgba(255,255,255,.025);backdrop-filter:blur(10px);transition:.4s ease}
 .memory:hover{transform:translateY(-5px);background:rgba(255,255,255,.045)}
 .memory-number{font-size:11px;letter-spacing:3px;opacity:.35;margin-bottom:12px}
 .memory-title{font-size:19px;margin-bottom:10px}
@@ -76,19 +72,65 @@ audio{width:100%}
 .letter p{margin-bottom:24px}
 .letter .closing{text-align:center;margin-top:50px;font-size:20px;color:rgba(255,255,255,.9)}
 
-.maybe{max-width:650px;margin:auto;text-align:center;padding:50px 25px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
-.maybe-title{font-size:34px;font-weight:normal;margin-bottom:22px}
-.maybe-text{font-size:17px;line-height:1.9;color:rgba(255,255,255,.65);margin-bottom:35px}
-.maybe-button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:13px 26px;font-size:14px;cursor:pointer;transition:.4s ease}
-.maybe-button:hover{background:#fff;color:#07070b}
+/* =========================================================
+   NOTICEABLE MAYBE SOMEDAY SECTION
+========================================================= */
+.maybe-section{scroll-margin-top:30px}
+.maybe{
+    max-width:680px;
+    margin:auto;
+    text-align:center;
+    padding:55px 28px 50px;
+    border:1px solid rgba(255,180,200,.22);
+    border-radius:28px;
+    background:linear-gradient(145deg,rgba(255,180,200,.08),rgba(255,255,255,.025));
+    box-shadow:0 20px 90px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+}
+.maybe::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.04);
+    pointer-events:none;
+}
+.maybe-kicker{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.48;
+    margin-bottom:18px;
+}
+.maybe-title{font-size:clamp(32px,8vw,48px);font-weight:normal;margin-bottom:20px}
+.maybe-text{font-size:17px;line-height:1.9;color:rgba(255,255,255,.72);margin:0 auto 30px;max-width:560px}
+.maybe-note{font-family:Arial,Helvetica,sans-serif;font-size:12px;color:rgba(255,255,255,.4);margin-bottom:25px}
+.maybe-button{
+    background:#fff;
+    color:#07070b;
+    border:0;
+    border-radius:50px;
+    padding:15px 30px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.35s ease;
+    box-shadow:0 10px 35px rgba(255,255,255,.12);
+}
+.maybe-button:hover{transform:translateY(-3px);box-shadow:0 15px 45px rgba(255,255,255,.2)}
+.maybe-button:active{transform:scale(.97)}
 
-.meeting-form{display:none;max-width:600px;margin:40px auto 0;text-align:left;animation:reveal 1s ease forwards}
-.form-group{margin-bottom:25px}
+.meeting-form{display:none;max-width:600px;margin:40px auto 0;text-align:left;animation:reveal .8s ease forwards}
+.form-group{margin-bottom:22px}
 .form-group label{display:block;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.5;margin-bottom:9px}
 .form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 15px;background:rgba(255,255,255,.045);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:12px;outline:none;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.form-group select option{background:#111;color:#fff}
 .form-group textarea{min-height:110px;resize:vertical}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(255,255,255,.45)}
-.submit-button{display:block;margin:auto;padding:13px 28px;border:1px solid rgba(255,255,255,.3);border-radius:50px;background:transparent;color:#fff;cursor:pointer}
+.submit-button{display:block;margin:10px auto 0;padding:14px 28px;border:1px solid rgba(255,255,255,.3);border-radius:50px;background:transparent;color:#fff;cursor:pointer}
+.submit-button:hover{background:#fff;color:#07070b}
+.form-status{text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;margin-top:20px;color:rgba(255,255,255,.65)}
 
 .final-message{text-align:center;max-width:650px;margin:auto}
 .final-message p{font-size:18px;line-height:2;color:rgba(255,255,255,.72);margin-bottom:18px}
@@ -106,7 +148,8 @@ audio{width:100%}
 .bubble{max-width:84%;font-size:14px}
 .memory-grid{grid-template-columns:1fr}
 .letter{font-size:16px}
-.maybe-title{font-size:29px}
+.maybe{padding:45px 20px}
+.maybe-title{font-size:32px}
 }
 </style>
 </head>
@@ -148,42 +191,11 @@ audio{width:100%}
             Somehow, they became something I remembered.
         </p>
         <div class="chat">
-
-            <div class="chat-row her">
-                <div class="bubble">
-                    <div class="chat-name">her</div>
-                    I have to go for an inquiry about a computer class.
-                </div>
-            </div>
-
-            <div class="chat-row me">
-                <div class="bubble">
-                    <div class="chat-name">me</div>
-                    Where is it?
-                </div>
-            </div>
-
-            <div class="chat-row her">
-                <div class="bubble">
-                    <div class="chat-name">her</div>
-                    I don't really have anyone to come with me.
-                </div>
-            </div>
-
-            <div class="chat-row me">
-                <div class="bubble">
-                    <div class="chat-name">me</div>
-                    I can come with you, if you want.
-                </div>
-            </div>
-
-            <div class="chat-row her">
-                <div class="bubble">
-                    <div class="chat-name">her</div>
-                    Okay.
-                </div>
-            </div>
-
+            <div class="chat-row her"><div class="bubble"><div class="chat-name">her</div>I have to go for an inquiry about a computer class.</div></div>
+            <div class="chat-row me"><div class="bubble"><div class="chat-name">me</div>Where is it?</div></div>
+            <div class="chat-row her"><div class="bubble"><div class="chat-name">her</div>I don't really have anyone to come with me.</div></div>
+            <div class="chat-row me"><div class="bubble"><div class="chat-name">me</div>I can come with you, if you want.</div></div>
+            <div class="chat-row her"><div class="bubble"><div class="chat-name">her</div>Okay.</div></div>
         </div>
     </div>
 </div>
@@ -191,61 +203,17 @@ audio{width:100%}
 <div class="section">
     <div class="section-label">Little memories</div>
     <div class="memory-grid">
-
-        <div class="memory">
-            <div class="memory-number">01</div>
-            <div class="memory-title">The bus stop</div>
-            <div class="memory-text">
-                I remember searching for you, calling you, and finally seeing your hand go up.
-            </div>
-        </div>
-
-        <div class="memory">
-            <div class="memory-number">02</div>
-            <div class="memory-title">The inquiry</div>
-            <div class="memory-text">
-                Somehow I ended up filling the form and asking half the questions myself.
-            </div>
-        </div>
-
-        <div class="memory">
-            <div class="memory-number">03</div>
-            <div class="memory-title">The supermarket</div>
-            <div class="memory-text">
-                Bread, Chocos and all the completely random things I decided to buy.
-            </div>
-        </div>
-
-        <div class="memory">
-            <div class="memory-number">04</div>
-            <div class="memory-title">That soup</div>
-            <div class="memory-text">
-                Somehow vegetable soup became two extremely hot mushroom soups. I still remember that heat. 😂
-            </div>
-        </div>
-
-        <div class="memory">
-            <div class="memory-number">05</div>
-            <div class="memory-title">The walk</div>
-            <div class="memory-text">
-                We walked all the way back, talking about everything. I remember slowing down without even thinking about it.
-            </div>
-        </div>
-
-        <div class="memory">
-            <div class="memory-number">06</div>
-            <div class="memory-title">Childhood us</div>
-            <div class="memory-text">
-                Childhood photographs, laughter and two versions of ourselves that felt strangely close.
-            </div>
-        </div>
-
+        <div class="memory"><div class="memory-number">01</div><div class="memory-title">The bus stop</div><div class="memory-text">I remember searching for you, calling you, and finally seeing your hand go up.</div></div>
+        <div class="memory"><div class="memory-number">02</div><div class="memory-title">The inquiry</div><div class="memory-text">Somehow I ended up filling the form and asking half the questions myself.</div></div>
+        <div class="memory"><div class="memory-number">03</div><div class="memory-title">The supermarket</div><div class="memory-text">Bread, Chocos and all the completely random things I decided to buy.</div></div>
+        <div class="memory"><div class="memory-number">04</div><div class="memory-title">That soup</div><div class="memory-text">Somehow vegetable soup became two extremely hot mushroom soups. I still remember that heat. 😂</div></div>
+        <div class="memory"><div class="memory-number">05</div><div class="memory-title">The walk</div><div class="memory-text">We walked all the way back, talking about everything. I remember slowing down without even thinking about it.</div></div>
+        <div class="memory"><div class="memory-number">06</div><div class="memory-title">Childhood us</div><div class="memory-text">Childhood photographs, laughter and two versions of ourselves that felt strangely close.</div></div>
     </div>
 </div>
 
 <div class="section">
     <div class="section-label">One night</div>
-
     <div class="letter">
         <p>There was a night when everything somehow became music.</p>
         <p>I was talking to you while working on a song, and the words we'd spoken kept finding their way into it.</p>
@@ -257,10 +225,7 @@ audio{width:100%}
     <div class="music-card">
         <div class="music-label">Something I made</div>
         <div class="song-title">Stranger Flame</div>
-        <div class="song-description">
-            A song born somewhere around midnight, from a conversation I didn't want to forget.
-        </div>
-
+        <div class="song-description">A song born somewhere around midnight, from a conversation I didn't want to forget.</div>
         <audio controls>
             <source src="Stranger's flame re edit.mp3" type="audio/mpeg">
             Your browser does not support audio.
@@ -270,105 +235,71 @@ audio{width:100%}
 
 <div class="section">
     <div class="section-label">Five things</div>
-
     <div class="love-list">
-
-        <div class="love-item">
-            <strong>01 — The way you talk</strong>
-            <span>Even ordinary conversations somehow became memories for me.</span>
-        </div>
-
-        <div class="love-item">
-            <strong>02 — Your little moments</strong>
-            <span>The small things you probably didn't think twice about stayed with me.</span>
-        </div>
-
-        <div class="love-item">
-            <strong>03 — Your trust</strong>
-            <span>I appreciated the things you chose to share with me.</span>
-        </div>
-
-        <div class="love-item">
-            <strong>04 — Your smile</strong>
-            <span>Especially the moments when you were laughing at something I did.</span>
-        </div>
-
-        <div class="love-item">
-            <strong>05 — The person you are</strong>
-            <span>Not because you're perfect, but because you're simply you.</span>
-        </div>
-
+        <div class="love-item"><strong>01 — The way you talk</strong><span>Even ordinary conversations somehow became memories for me.</span></div>
+        <div class="love-item"><strong>02 — Your little moments</strong><span>The small things you probably didn't think twice about stayed with me.</span></div>
+        <div class="love-item"><strong>03 — Your trust</strong><span>I appreciated the things you chose to share with me.</span></div>
+        <div class="love-item"><strong>04 — Your smile</strong><span>Especially the moments when you were laughing at something I did.</span></div>
+        <div class="love-item"><strong>05 — The person you are</strong><span>Not because you're perfect, but because you're simply you.</span></div>
     </div>
 </div>
 
 <div class="section">
     <div class="section-label">A birthday letter</div>
-
     <div class="letter">
         <p>Happy Birthday, Pavi.</p>
-
-        <p>
-            I don't know how many times I've replayed the little moments we've had,
-            but somehow they still feel close.
-        </p>
-
-        <p>
-            The bus rides, the random conversations, the ridiculous soup, the walking,
-            the photographs, the late nights, the music — none of them looked like
-            important moments while they were happening.
-        </p>
-
-        <p>
-            But sometimes the smallest moments become the ones we remember the most.
-        </p>
-
-        <p>
-            I don't want this page to ask anything from you.
-            I don't want it to make you feel uncomfortable.
-            I just wanted to give a little space to some memories that mattered to me.
-        </p>
-
-        <p>
-            Whatever life brings you next, I genuinely hope it is kind to you.
-            I hope you find things that make you happy, people who make you feel
-            understood, and places where you can become exactly who you want to be.
-        </p>
-
-        <p>
-            And if you ever look back at this chapter someday,
-            I hope you remember it kindly too.
-        </p>
-
+        <p>I don't know how many times I've replayed the little moments we've had, but somehow they still feel close.</p>
+        <p>The bus rides, the random conversations, the ridiculous soup, the walking, the photographs, the late nights, the music — none of them looked like important moments while they were happening.</p>
+        <p>But sometimes the smallest moments become the ones we remember the most.</p>
+        <p>I don't want this page to ask anything from you. I don't want it to make you feel uncomfortable. I just wanted to give a little space to some memories that mattered to me.</p>
+        <p>Whatever life brings you next, I genuinely hope it is kind to you. I hope you find things that make you happy, people who make you feel understood, and places where you can become exactly who you want to be.</p>
+        <p>And if you ever look back at this chapter someday, I hope you remember it kindly too.</p>
         <p class="closing">Have a beautiful birthday. ❤️</p>
     </div>
 </div>
 
-<div class="section">
-    <div class="section-label">One last little thing</div>
+<!-- =========================================================
+     NOTICEABLE MEETING INVITATION + BACKEND FORM
+========================================================= -->
+<div class="section maybe-section" id="maybeSomeday">
+    <div class="section-label">If you ever want to</div>
 
     <div class="maybe">
+        <div class="maybe-kicker">A little invitation</div>
+
         <h3 class="maybe-title">Maybe, someday…</h3>
 
         <p class="maybe-text">
-            If our paths happen to cross again, I'd be happy to see you.
-            No promises. No expectations.
-            Just a chance to talk again, if you'd ever want that too.
+            There's one thing I didn't want to hide somewhere at the bottom of the page.
+            If you'd ever genuinely like to meet and talk again, you can tell me.
+            No pressure. No expectation. Just an open door.
         </p>
 
+        <div class="maybe-note">
+            Only choose this if you actually want to.
+        </div>
+
         <button class="maybe-button" onclick="showMeetingForm()">
-            Maybe someday
+            💌 I'd like to meet someday
         </button>
 
-        <div class="meeting-form" id="meetingForm">
+        <form
+            class="meeting-form"
+            id="meetingForm"
+            action="https://formspree.io/f/xgaeoeao"
+            method="POST"
+        >
+            <input type="hidden" name="_subject" value="September 4 — Maybe someday">
+            <input type="hidden" name="_format" value="plain">
 
             <div class="form-group">
-                <label>A day</label>
-                <input type="date" id="meetingDate">
+                <label for="meetingDate">A day</label>
+                <input type="date" id="meetingDate" name="preferred_date">
             </div>
 
             <div class="form-group">
-                <label>Somewhere you'd like to go</label>
-                <select id="meetingPlace">
+                <label for="meetingPlace">Somewhere you'd like to go</label>
+                <select id="meetingPlace" name="preferred_place">
                     <option value="">Choose one</option>
                     <option>☕ Café</option>
                     <option>🌳 Park</option>
@@ -380,34 +311,30 @@ audio{width:100%}
             </div>
 
             <div class="form-group">
-                <label>Anything you'd like to say</label>
-                <textarea id="meetingMessage" placeholder="Only if you want to..."></textarea>
+                <label for="meetingMessage">Anything you'd like to say</label>
+                <textarea id="meetingMessage" name="message" placeholder="Only if you want to..."></textarea>
             </div>
 
-            <button class="submit-button" onclick="submitMeeting()">
+            <button class="submit-button" type="submit">
                 Send this little plan
             </button>
 
-        </div>
+            <div class="form-status">
+                Your choices will only be sent when you press the button.
+            </div>
+        </form>
     </div>
 </div>
 
 <div class="section">
     <div class="final-message">
-
         <p>Whatever this year brings you, I hope it is kind to you.</p>
         <p>Keep chasing the things that make you happy.</p>
         <p>Keep becoming the person you're meant to be.</p>
         <p>And most importantly...</p>
-
         <p><strong>Have a beautiful year ahead.</strong></p>
-
         <div class="signature">— from someone who remembered</div>
-
-        <div class="joke">
-            Okay, enough emotional nonsense. Go enjoy your birthday. 😂
-        </div>
-
+        <div class="joke">Okay, enough emotional nonsense. Go enjoy your birthday. 😂</div>
     </div>
 </div>
 
@@ -415,7 +342,7 @@ audio{width:100%}
 </section>
 
 <script>
-const background = document.querySelector(".background");
+const background=document.querySelector(".background");
 
 for(let i=0;i<110;i++){
     const star=document.createElement("div");
@@ -458,25 +385,13 @@ function revealSections(){
 }
 
 function showMeetingForm(){
-    document.getElementById("meetingForm").style.display="block";
-}
-
-function submitMeeting(){
-    const date=document.getElementById("meetingDate").value;
-    const place=document.getElementById("meetingPlace").value;
-
-    if(!date || !place){
-        alert("You can choose a day and place if you'd like. ❤️");
-        return;
-    }
-
-    alert(
-        "Your little plan is ready. ❤️\n\n" +
-        "We'll connect the sending part next."
-    );
+    const form=document.getElementById("meetingForm");
+    form.style.display="block";
+    setTimeout(()=>{
+        form.scrollIntoView({behavior:"smooth",block:"center"});
+    },100);
 }
 </script>
 
 </body>
 </html>
-
