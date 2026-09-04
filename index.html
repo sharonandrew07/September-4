@@ -46,10 +46,10 @@ body{min-height:100vh;background:#07070b;color:#fff;font-family:Georgia,"Times N
 <div class="small-title">For Pavithra</div>
 <h1 class="main-title">September 4</h1>
 <p class="subtitle">Some memories deserve a place to stay.</p>
-<button class="open-button" id="openButton" onclick="openGift()" disabled>Opens at midnight ✨</button>
+<button class="open-button" onclick="openGift()">Open it ✨</button>
 <div class="countdown-wrap">
 <div class="countdown-label">Until September 4</div>
-<div class="countdown" id="countdown">/div>
+<div class="countdown" id="countdown">00:00:00:00</div>
 <div class="countdown-message" id="countdownMessage">A little page, waiting for midnight.</div>
 </div>
 </div>
@@ -193,18 +193,11 @@ let countdownTarget=getNextSeptember4IST();
 
 function updateCountdown(){
  const remaining=countdownTarget.getTime()-Date.now();
- const openButton=document.getElementById("openButton");
  if(remaining<=0){
   document.getElementById("countdown").textContent="00:00:00:00";
   document.getElementById("countdownMessage").textContent="It's September 4. ❤️";
-  openButton.disabled=false;
-  openButton.textContent="Open it ✨";
-  // Reveal the website automatically at exactly midnight.
-  if(!window.giftOpened) openGift();
   return;
  }
- openButton.disabled=true;
- openButton.textContent="Opens at midnight ✨";
  const s=Math.floor(remaining/1000);
  const d=Math.floor(s/86400);
  const h=Math.floor((s%86400)/3600);
@@ -217,10 +210,6 @@ updateCountdown();
 setInterval(updateCountdown,1000);
 
 function openGift(){
- // Never allow the birthday pages to open before September 4, 12:00 AM IST.
- if(Date.now() < countdownTarget.getTime()) return;
- if(window.giftOpened) return;
- window.giftOpened=true;
  const intro=document.getElementById("intro");
  const main=document.getElementById("main");
  intro.style.opacity="0";
